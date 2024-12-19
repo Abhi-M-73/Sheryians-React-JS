@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 
-const InformationContext = ({children}) => {
+
+export const dataContext = createContext(null);
+
+const InformationContext = ({ children }) => {
+
+  const [data, setData] = useState("Helloo Abhi");
+
+
   return (
     <div className='w-[80%] mx-auto p-10 bg-gray-400'>
-      <h1>{children}</h1>
+      <h1>
+        <dataContext.Provider value={[data, setData]}>
+          {children}
+        </dataContext.Provider>
+      </h1>
     </div>
   )
 }
